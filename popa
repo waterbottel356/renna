@@ -1,0 +1,421 @@
+========== Array ==========
+
+import java.util.Scanner;
+public class Array {
+    public static void main(String [] args){
+        int[] arr = new int[10];
+        int size = 5;
+
+        Scanner UserIn = new Scanner(System.in);
+
+        System.out.println("Enter Data: ");
+        for(int i=0; i<size; i++){
+            arr[i] = UserIn.nextInt();
+        }
+
+        System.out.println("Output of Array: ");
+        for(int j=0; j<size; j++){
+            System.out.println(arr[j]);
+        } 
+    }
+}
+
+
+========== Insert to Array ==========
+
+	System.out.println("Enter the index: ");
+        int ind = UserIn.nextInt();
+
+        System.out.println("Enter the element: ");
+        int ele = UserIn.nextInt();
+
+        size++;
+
+        for(int k=size; k>=ind; k--){
+            arr[k] = arr[k-1]; 
+        }
+
+        arr[ind]=ele;
+
+        System.out.println("Output of Array: ");
+        for(int j=0; j<size; j++){
+            System.out.println(arr[j]); 
+        }
+
+
+
+========== Delete from Array ==========
+
+        System.out.println("Enter the index: ");
+        int ind = UserIn.nextInt();
+
+        for(int i=ind; i<size; i++){
+            arr[i] = arr[i+1];
+        }
+
+        size--;
+
+        System.out.println("Output of Array: ");
+        for(int j=0; j<size; j++){
+            System.out.println(arr[j]); 
+        }
+
+
+
+========== Search from Array ==========
+
+        System.out.println("Enter the Data for Search: ");
+        int data = UserIn.nextInt();
+
+        int k;
+        for(k=0; k<size; k++){
+            if(arr[k] == data){
+                break;
+            }
+        }
+        System.out.println(k);
+
+
+========== Queue ==========
+
+public class Queue {
+    int rear;
+    int front;
+    int capacity;
+    int queueArr[];
+
+    Queue(int size){
+        rear = -1;
+        front = 0;
+        capacity = size;
+        queueArr = new int[size];
+    }
+
+    boolean isFull(){
+        return rear+1 == capacity;
+    }
+
+    boolean isEmpty(){
+        return rear<front;
+    }
+
+    void enqueue(int x){
+        if(isFull()){
+            System.out.println("Queue Is Full");
+        }
+        else{
+           rear++;
+           queueArr[rear] = x;
+           System.out.println("inserting :"+ x);
+        }
+    }
+
+    void dequeue(){
+        if(isEmpty()){
+            System.out.println("Queue Is Empty");
+        }
+        else{
+            System.out.println("Removing" + queueArr[front]);
+            front++;
+        }
+    }
+
+    void printQueue(){
+        for(int i=front; i<=rear; i++){
+            System.out.print(queueArr[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Queue myqueue = new Queue(5);
+
+        myqueue.enqueue(10);
+        myqueue.enqueue(20);
+        myqueue.enqueue(30);
+        myqueue.enqueue(40);
+        myqueue.enqueue(50);
+        myqueue.enqueue(60);
+
+        myqueue.dequeue();
+        myqueue.dequeue();
+
+        myqueue.printQueue();
+    }
+}
+
+
+
+========== Stack ==========
+
+public class stack{
+    int arr[];
+    int top;
+    int capacity;
+
+    stack(int size){
+        arr = new int[size];
+        capacity= size;
+        top= -1;
+    }
+
+    Boolean isFull(){
+        return top+1 == capacity;
+    }
+
+    Boolean isEmpty(){
+        return top == -1;
+    }
+
+    void push(int x){
+        if(isFull()){
+            System.out.println("over flow!");
+        }
+        else{
+            top++;
+            arr[top]= x;
+            System.out.println("Inserting:"+ x);
+        }
+    }
+
+    void pop(){
+        if(isEmpty()){
+            System.out.println("Stack Empty");
+        }
+        else{
+            System.out.println("Removing" + arr[top]);
+            top--;          
+        }
+    }
+
+    void display(){
+        System.out.println("Display:");
+        for(int i=0; i<=top; i++){
+            System.out.println(arr[i]);
+        }
+    }
+
+    void size(){
+        System.out.println(top+1);
+    }
+
+    public static void main(String[] args){
+        stack mystack = new stack(5);
+
+        mystack.push(10);
+        mystack.push(20);
+
+        mystack.pop();
+
+        mystack.display();
+        mystack.size();
+    }
+}
+
+
+========== Selection Sort ==========
+
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+
+        int[] num ={56,36,98,11,22,78,02,65};
+        System.out.println(Arrays.toString(num));
+        selectionSort(num);
+        System.out.println(Arrays.toString(num));
+
+    }
+    private static void selectionSort(int[] num) {
+        for (int i = 0; i < num.length; i++) {
+            int min = num[i];
+            int inofmin= i;
+            for (int j = i+1; j < num.length ; j++) {
+                if(num[j] < min){
+                    min = num[j];
+                    inofmin =j;
+                }
+            }
+            swap(num, i, inofmin);
+
+        }
+    }
+    private static void swap(int[] num, int a, int b) {
+        int temp = num[a];
+        num[a] = num[b];
+        num[b] = temp;
+    }
+}
+
+
+
+========== Bubble Sort ==========
+
+import java.util.Arrays;
+
+public class bub {
+
+    public static void main(String[] args) {
+        int arr[] = { 10, 13, 8, 3, 5, 21, 1, 12 };
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 1; j < arr.length - i; j++) {
+                if (arr[j] < arr[j - 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+            }
+
+        }
+
+        System.out.println(Arrays.toString(arr));
+
+    }
+}
+
+
+
+========== Merge Sort ==========
+
+import java.util.Arrays;
+
+class Main {
+
+    
+    void merge(int array[], int p, int q, int r) {
+
+        int n1 = q - p + 1;
+        int n2 = r - q;
+
+        int L[] = new int[n1];
+        int M[] = new int[n2];
+
+        for (int i = 0; i < n1; i++)
+            L[i] = array[p + i];
+        for (int j = 0; j < n2; j++)
+            M[j] = array[q + 1 + j]
+
+        int i, j, k;
+        i = 0;
+        j = 0;
+        k = p;
+
+        while (i < n1 && j < n2) {
+            if (L[i] <= M[j]) {
+                array[k] = L[i];
+                i++;
+            } else {
+                array[k] = M[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            array[k] = L[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            array[k] = M[j];
+            j++;
+            k++;
+        }
+    }
+
+    void mergeSort(int array[], int left, int right) {
+        if (left < right) {
+
+            int mid = (left + right) / 2;
+
+            mergeSort(array, left, mid);
+            mergeSort(array, mid + 1, right);
+
+            merge(array, left, mid, right);
+        }
+    }
+
+    public static void main(String args[]) {
+
+        int[] array = { 6, 5, 12, 10, 9, 1 };
+
+        Main ob = new Main();
+
+        ob.mergeSort(array, 0, array.length - 1);
+
+        System.out.println("Sorted Array:");
+        System.out.println(Arrays.toString(array));
+    }
+}
+
+
+
+========== Binary Tree ==========
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    public Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+class BinaryTree {
+    Node root;
+
+    public BinaryTree() {
+        root = null;
+    }
+
+    // Function to insert a new node
+    public void insert(int data) {
+        root = insertRecursive(root, data);
+    }
+
+    // Recursive function to insert a new node
+    private Node insertRecursive(Node root, int data) {
+        if (root == null) {
+            root = new Node(data);
+            return root;
+        }
+
+        if (data < root.data) {
+            root.left = insertRecursive(root.left, data);
+        } else if (data > root.data) {
+            root.right = insertRecursive(root.right, data);
+        }
+
+        return root;
+    }
+
+    // Function to perform an in-order traversal
+    public void inorderTraversal(Node root) {
+        if (root != null) {
+            inorderTraversal(root.left);
+            System.out.print(root.data + " ");
+            inorderTraversal(root.right);
+        }
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+
+        // Inserting elements into the binary tree
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(70);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(60);
+        tree.insert(80);
+
+        // Performing an in-order traversal
+        System.out.println("In-order traversal of the binary tree:");
+        tree.inorderTraversal(tree.root);
+        // Output: 20 30 40 50 60 70 80
+    }
+}
